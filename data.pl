@@ -7,13 +7,27 @@
 % 2. Path c: Which engine do you prefer use?
 % 2. Path d: Startup or established
 % 2. Path e: How invested are you?
-% 2. Path f: complier, using regular expressions, my hardware
+% 2. Path f: compiler, using regular expressions, my hardware
 % 2. Path g: 
 % 2. Path h: 
-% 2. Path i:
+% 2. Path i: 
 
+
+:- dynamic(remember/3).
 
 % technologies - end results:
+
+solve :-
+	writeln("Hello "),
+	top_goal(X),
+	write("Your tech is "),
+	write(X),
+	write("\n").
+solve :-
+	writeln("Nothing found").
+
+top_goal(X) :- 
+	tech(X).
 
 tech(react) :-
         field(web_frontend),
@@ -86,3 +100,38 @@ tech(unity) :-
 tech(unreal) :-
         field(gamedev),
         lang(cpp).
+
+tech(swift) :-
+	platform(mac).
+
+platform(A) :-
+	ask(plaform, A).
+
+field(A) :-
+	ask(field, A).
+
+lang(A) :-
+	ask(lang, A).
+
+skill(A) :-
+	ask(skill, A).
+
+ask(Q, A) :-
+	remember(yes, Q, A), % if "yes", true. otherwise, false.
+	!.
+ask(Q, A) :-
+	remember(_, Q, A),
+	!,
+	fail.
+ask(Q, A) :-
+	write(Q:A), % question
+	writeln('? '),
+	read(X),
+	assertz(remember(X, Q, A)), % remember answer
+	X == yes.
+
+	
+
+
+
+

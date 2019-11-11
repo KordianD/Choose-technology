@@ -8,10 +8,6 @@
 % 2. Path d: Startup or established
 % 2. Path e: How invested are you?
 % 2. Path f: compiler, using regular expressions, my hardware
-% 2. Path g:
-% 2. Path h:
-% 2. Path i:
-
 
 :- dynamic(remember/3).
 
@@ -25,6 +21,8 @@ solve :-
     secondary_goal(X),
     writeln("No technology found, but consider learning: "),
     writeln(X).
+solve :-
+    writeln("Nothing found").
 
 top_goal(X) :-
     tech(X).
@@ -126,31 +124,39 @@ platform(A) :-
 
 field(A) :-
     fail. % temporary - for testing
+    % ask(field, A).
 
 % determine language
 
-% encode similarities
+% encode similarities between languages and ask user what he prefers
+% definition of similarity
 similar(A, B) :-
     similar_to(A, B).
 similar(A, B) :-
     similar_to(B, A).
 similar(A, B) :-
     A == B.
-list_of_langs([swift, objective_c, c]).
+% list of languages and relations
+list_of_langs([c, cpp, objective_c, swift]).
 similar_to(c, objective_c).
+similar_to(c, cpp).
 
+% logic for detemining user preference and knowledge
 wants_similar(A) :-
-    ask(wants_similar, A).
-
+    menuask(wants_similar, A, [yes, no, dnc]).
+wants_similar_to(A) :-
+    knows(A),
+    ask(wants_similar_to, A).
 knows(A) :-
     list_of_langs(L),
-    member(A, L),
+    member(B, L),
+    similar(A, B),
     ask(knows, A).
 
 % check if user wants a language similar to one they know
 lang(A) :-
     wants_similar(yes),
-    knows(B),
+    wants_similar_to(B),
     similar(B,A).
 
 lang(A) :-
@@ -184,12 +190,41 @@ ask(Q, A) :-
     !,
     fail.
 ask(Q, A) :-
-    write("question: "), writeln(Q),
-    write("answer: "), writeln(A), % question
+    write("question: "),
+    writeln(Q),
+    write("answer: "),
+    writeln(A), % question
     writeln("yes or no? "),
     read(X),
     assertz(remember(X, Q, A)), % remember answer
     X == yes.
 
-%menuask(Q, A, L) :-
-%    fail.
+% menu with multiple answers
+menuask(Q, A, _) :-
+    remember(yes, Q, A), % if "yes", true. otherwise, false.
+    !.
+menuask(Q, A, _) :-
+    remember(_, Q, A),
+    !,
+    fail.
+menuask(Q, A, _) :-
+    exclusive(Q),
+    remember(yes, Q, A2),
+    A \== A2,
+    !,
+    fail.
+menuask(Q, A, L) :-
+    write(Q),
+    writeln(":"),
+    writeln(L),
+    read(X),
+    legal(Q, A, L, X),
+    assertz(remember(yes, Q, X)), % remember answer
+    X == A.
+legal(_, _, L, X) :-
+    member(X, L),
+    !.
+legal(Q, A, L, X) :-
+    write("Illegal value: "),
+    writeln(X),
+    menuask(Q, A, L).

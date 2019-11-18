@@ -98,7 +98,8 @@ tech(dl4j) :-
 
 tech(unity) :-
     field(gamedev),
-    lang(csharp).
+    lang(csharp),
+    platform(any).
 
 tech(unreal) :-
     field(gamedev),
@@ -116,8 +117,24 @@ tech(cocoa) :-
     platform(mac),
     lang(objective_c).
 
-
 % 2nd level attributes:
+
+field(gamedev) :-
+    likes(games).
+field(gamedev) :-
+    likes(design).
+field(machine_learning) :-
+    likes(science).
+field(machine_learning) :-
+    likes(innovation)
+field(web_frontend) :-
+    likes(design)
+field(web_frontend) :-
+    likes(ux)
+field(web_backend) :-
+    likes(complex_systems)
+field(desktop) :-
+    likes(ux)
 
 platform(A) :-
     ask(plaform, A).
@@ -158,12 +175,10 @@ lang(A) :-
     wants_similar(yes),
     wants_similar_to(B),
     similar(B,A).
-
 lang(A) :-
     wants_similar(no),
     knows(B),
     not(similar(B,A)).
-
 lang(A) :-
     wants_similar(dnc),
     list_of_langs(L),

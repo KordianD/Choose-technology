@@ -138,10 +138,6 @@ field(desktop) :-
 platform(A) :-
     ask(plaform, A).
 
-field(A) :-
-    fail. % temporary - for testing
-    % ask(field, A).
-
 % determine language
 
 % encode similarities between languages and ask user what he prefers

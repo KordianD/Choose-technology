@@ -14,7 +14,7 @@ question(Q) :-
     member(Q, L),
     !.
 
-% interface to
+% interface to list answers to a question
 answers(Q, A) :-
     list_of_answers(Q, L),
     member(A, L).
@@ -24,7 +24,6 @@ answers(Q, A) :-
      menuask(wants_similar, A, [yes, no, dnc]).
  wants_similar_to(A) :-
      knows(A).
-     % ask(wants_similar_to, A).
  knows(A) :-
      list_of_langs(L),
      member(B, L),

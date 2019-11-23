@@ -9,14 +9,17 @@ def get_question_from_prolog():
         return str(q["Q"])
 
 def get_answers_from_prolog(question):
-    a = []
-    for q in prolog.query("answers(Q, A)"):
-        a.append(str(q["A"]))
-    return a
+    answers = []
+    for a in prolog.query("answers(Q, A)"):
+        answers.append(str(a["A"]))
+    return answers
 
 def save_answer_to_prolog(question, answer):
-    cmd = "{0}({1})".format(question, answer)
-    prolog.assertz("remember(yes,question,answer)")
+    cmd = "remember(yes, {0}, {1})".format(question, answer)
+    prolog.assertz(cmd)
 
 def get_possible_techs():
-    return list(prolog.query("tech(X)"))
+        techs = []
+        for t in prolog.query("tech(X)"):
+            techs.append(str(t["X"]))
+        return techs

@@ -108,6 +108,10 @@ tech(swift_ui) :-
 tech(swift_ui) :-
     platform(mac),
     lang(swift).
+tech(godot) :-
+    field(gamedev),
+    lang(cpp),
+    skill(intermediate).
 tech(cocoa) :-
     platform(mac),
     lang(objective_c).

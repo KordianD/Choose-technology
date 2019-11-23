@@ -118,7 +118,6 @@ tech(cocoa) :-
     lang(objective_c).
 
 % 2nd level attributes:
-
 field(gamedev) :-
     likes(games).
 field(gamedev) :-
@@ -126,15 +125,15 @@ field(gamedev) :-
 field(machine_learning) :-
     likes(science).
 field(machine_learning) :-
-    likes(innovation)
+    likes(innovation).
 field(web_frontend) :-
-    likes(design)
+    likes(design).
 field(web_frontend) :-
-    likes(ux)
+    likes(ux).
 field(web_backend) :-
-    likes(complex_systems)
+    likes(complex_systems).
 field(desktop) :-
-    likes(ux)
+    likes(ux).
 
 platform(A) :-
     ask(plaform, A).

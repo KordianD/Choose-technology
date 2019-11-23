@@ -18,7 +18,7 @@ def get_answers_from_prolog():
 
 def save_answer_to_prolog(question, answer):
     cmd = "{0}({1})".format(question, answer)
-    prolog.assertz("question(answer)")
+    prolog.assertz("remember(yes,question,answer)")
 
 def get_possible_techs():
     return list(prolog.query("tech(X)"))

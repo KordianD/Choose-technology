@@ -18,6 +18,7 @@ list_of_answers(likes, [ux, complex_systems, web_frontend, design, innovation, s
 list_of_asnwers(lang, [c, cpp, objective_c, swift]).
 similar_to(c, objective_c).
 similar_to(c, cpp).
+similar_to(java, csharp).
 
 % technologies - end results:
 tech(react) :-

@@ -1,20 +1,18 @@
 from pyswip import Prolog
 
 
-def start_prolog():
-    prolog = Prolog()
-    prolog.consult("data.pl")
-    return prolog
-
+prolog = Prolog()
+prolog.consult("main.pl")
 
 def get_question_from_prolog():
-    # mock
-    return "Question number 1"
+    for q in prolog.query("question(Q)"):
+        return str(q["Q"])
 
-
-def get_answers_from_prolog():
-    # mock
-    return ['Answer 111111111111111111111', 'Answer 2', 'Answer 3', 'Answer 4', 'Answer 5', 'Answer 6', 'Answer 7']
+def get_answers_from_prolog(question):
+    a = []
+    for q in prolog.query("answers(Q, A)"):
+        a.append(str(q["A"]))
+    return a
 
 def save_answer_to_prolog(question, answer):
     cmd = "{0}({1})".format(question, answer)

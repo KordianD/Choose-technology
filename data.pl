@@ -45,6 +45,12 @@ tech(flask) :-
     field(web_backend),
     lang(python),
     skill(basic).
+tech(node) :-
+    field(web_backend),
+    lang(javascript).
+tech(javafx) :-
+    field(web_backend),
+    lang(java).
 tech(electron) :-
     field(desktop),
     lang(javascript),
@@ -76,7 +82,8 @@ tech(caffee) :-
     lang(cpp).
 tech(keras) :-
     field(machine_learning),
-    lang(python).
+    lang(python),
+    skill(basic).
 tech(dl4j) :-
     field(machine_learning),
     lang(java).

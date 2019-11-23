@@ -37,6 +37,14 @@ tech(css_js) :-
     field(web_frontend),
     lang(javascript),
     skill(basic).
+tech(bootstrap) :-
+    field(web_frontend),
+    lang(javascript),
+    skill(basic).
+tech(jquery) :-
+    field(web_frontend),
+    lang(javascript),
+    skill(basic).
 tech(django) :-
     field(web_backend),
     lang(python),

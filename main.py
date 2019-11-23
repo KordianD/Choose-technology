@@ -15,7 +15,7 @@ class MenuScreen(Screen):
         super(MenuScreen, self).__init__(**kwargs)
         floater = FloatLayout()
         mainButton = Button(text="Press to resolve your career as programmer", size_hint=(0.5, 0.2),
-                                pos_hint={'center_x': 0.5, 'center_y': .8})
+                            pos_hint={'center_x': 0.5, 'center_y': .8})
         mainButton.bind(on_press=lambda x: self.goToQuestions())
         floater.add_widget(mainButton)
         self.add_widget(floater)
@@ -31,7 +31,7 @@ class QuestionsScreen(Screen):
         floater = FloatLayout()
         question_text = get_question_from_prolog()
         question = Label(text=question_text, size_hint=(0.8, 0.15),
-                                pos_hint={'center_x': 0.5, 'center_y': .8})
+                         pos_hint={'center_x': 0.5, 'center_y': .8})
         floater.add_widget(question)
         answers = get_answers_from_prolog(question_text)
         apply_answers_to_buttons(answers, floater)

@@ -13,9 +13,10 @@ def apply_buttons_to_floater(answers, floater, y_offset):
     button_size, space_between_buttons = get_offsets(answers_count)
     for idx, answer in enumerate(answers):
         button = WrappedButton(
-                        text=answer,
-                        size_hint=(button_size, 0.2),
-                        pos_hint={'center_x': (space_between_buttons + button_size / 2) + idx*(space_between_buttons + button_size),
-                                  'center_y': y_offset},
-                        halign='center')
+            text=answer,
+            size_hint=(button_size, 0.2),
+            pos_hint={
+                'center_x': (space_between_buttons + button_size / 2) + idx * (space_between_buttons + button_size),
+                'center_y': y_offset},
+            halign='center')
         floater.add_widget(button)

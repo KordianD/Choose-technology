@@ -67,6 +67,15 @@ tech(pytorch) :-
 tech(tensorflow) :-
     field(machine_learning),
     lang(python).
+tech(tensorflow) :-
+    field(machine_learning),
+    lang(cpp).
+tech(caffee) :-
+    field(machine_learning),
+    lang(cpp).
+tech(keras) :-
+    field(machine_learning),
+    lang(python).
 tech(dl4j) :-
     field(machine_learning),
     lang(java).

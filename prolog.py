@@ -10,8 +10,9 @@ def get_question_from_prolog():
 
 
 def get_answers_from_prolog(question):
+    cmd = "answers({0}, A)".format(question)
     answers = []
-    for a in prolog.query("answers(Q, A)"):
+    for a in prolog.query(cmd):
         answers.append(str(a["A"]))
     return answers
 

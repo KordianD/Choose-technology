@@ -14,9 +14,9 @@ list_of_questions([likes, lang, platform, skill]).
 
 % lists of possible answers:
 list_of_answers(likes, [ux, complex_systems, web_frontend, design, innovation, science, games]).
-list_of_asnwers(lang, [c, cpp, objective_c, swift]).
-list_of_asnwers(platform, [any, windows, ios, mac]).
-list_of_asnwers(skill, [basic, intermediate]).
+list_of_answers(lang, [c, cpp, objective_c, swift]).
+list_of_answers(platform, [any, windows, ios, mac]).
+list_of_answers(skill, [basic, intermediate]).
 
 similar_to(c, objective_c).
 similar_to(c, cpp).

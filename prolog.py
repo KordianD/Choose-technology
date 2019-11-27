@@ -1,29 +1,28 @@
 from pyswip import Prolog
 
-prolog = Prolog()
-prolog.consult("main.pl")
 
+class PrologHelper:
+    def __init__(self):
+        self.prolog = Prolog()
+        self.prolog.consult("main.pl")
 
-def get_question_from_prolog():
-    for q in prolog.query("question(Q)"):
-        return str(q["Q"])
+    def get_question_from_prolog(self):
+        for q in self.prolog.query("question(Q)"):
+            return str(q["Q"])
 
+    def get_answers_from_prolog(self, question):
+        cmd = "answers({0}, A)".format(question)
+        answers = []
+        for a in self.prolog.query(cmd):
+            answers.append(str(a["A"]))
+        return answers
 
-def get_answers_from_prolog(question):
-    cmd = "answers({0}, A)".format(question)
-    answers = []
-    for a in prolog.query(cmd):
-        answers.append(str(a["A"]))
-    return answers
+    def save_answer_to_prolog(self, question, answer):
+        cmd = "remember(yes, {0}, {1})".format(question, answer)
+        self.prolog.assertz(cmd)
 
-
-def save_answer_to_prolog(question, answer):
-    cmd = "remember(yes, {0}, {1})".format(question, answer)
-    prolog.assertz(cmd)
-
-
-def get_possible_techs():
-    techs = []
-    for t in prolog.query("tech(X)"):
-        techs.append(str(t["X"]))
-    return techs
+    def get_possible_techs(self):
+        techs = []
+        for t in self.prolog.query("tech(X)"):
+            techs.append(str(t["X"]))
+        return techs

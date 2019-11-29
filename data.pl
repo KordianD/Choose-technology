@@ -10,7 +10,7 @@
 % 2. Path f: compiler, using regular expressions, my hardware
 
 % list of questions to possibly ask user:
-list_of_questions([likes, lang_status, platform, skill]).
+list_of_questions([likes, platform, lang_status, skill, lang_performance, lang_execution]).
 
 % lists of possible answers:
 list_of_answers(likes, [user_experience, complex_systems, web_apps, design, innovation, science, games]).
@@ -21,9 +21,9 @@ list_of_answers(lang_status, [new, established, any]).
 list_of_answers(lang_execution, [compiled, interpreted, any]).
 list_of_answers(lang_performance, [performance, expressiveness, any]).
 
-similar_to(c, objective_c).
-similar_to(c, cpp).
-similar_to(java, csharp).
+% similar_to(c, objective_c).
+% similar_to(c, cpp).
+% similar_to(java, csharp).
 
 % technologies - end results:
 tech(react) :-
@@ -107,15 +107,16 @@ tech(unity) :-
     skill(basic),
     field(gamedev),
     lang(csharp),
-    platform(any).
 tech(unreal) :-
     skill(intermediate),
     field(gamedev),
     lang(cpp).
 tech(swift_ui) :-
+    field(web_frontend)
     platform(ios),
     lang(swift).
 tech(swift_ui) :-
+    field(web_frontend)
     platform(mac),
     lang(swift).
 tech(godot) :-
@@ -123,6 +124,7 @@ tech(godot) :-
     lang(cpp),
     skill(intermediate).
 tech(cocoa) :-
+    field(desktop),
     platform(mac),
     lang(objective_c).
 tech(emscripten) :-
@@ -153,8 +155,6 @@ field(web_backend) :-
     likes(web_apps).
 field(desktop) :-
     likes(user_experience).
-field(desktop) :-
-    likes(complex_systems).
 
 list_of_answers(lang_traits, [procedural, object_oriented, functional, async, compiler]).
 

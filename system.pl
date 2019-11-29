@@ -7,12 +7,12 @@ consult(data).
 question(Q) :-
     list_of_questions(L),
     member(Q, L),
-    remember(_, Q, answers(Q)),
-    fail.
-question(Q) :-
-    list_of_questions(L),
-    member(Q, L),
+    \+remember(yes, Q, _),
     !.
+% question(Q) :-
+%     list_of_questions(L),
+%     member(Q, L),
+%     !.
 
 % interface to list answers to a question
 answers(Q, A) :-

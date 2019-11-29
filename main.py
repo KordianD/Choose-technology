@@ -65,9 +65,11 @@ class QuestionsScreen(Screen):
         prolog.save_answer_to_prolog(question, answer)
         tech = prolog.get_possible_techs()
         if len(tech) != 0:
+            print(tech)
             sm.current = "continue"
+        question = prolog.get_question_from_prolog()
         answers = prolog.get_answers_from_prolog(question)
-        self.question.text = prolog.get_question_from_prolog()
+        self.question.text = question
         self.reset_old_answers()
         self.apply_answers_to_buttons(self.question.text, answers)
 
@@ -86,8 +88,8 @@ class ContinueScreen(Screen):
         super(ContinueScreen, self).__init__(**kwargs)
         floater = FloatLayout()
         tech = prolog.get_possible_techs()
-        label = Label(text=f"You should start to learn\n {' '.join(tech)}\n but maybe we can give you more propositions"
-                           f"\n Do yo want continue?", size_hint=(0.8, 0.45),
+        label = Label(text=f"You should start to learn\n {' '.join(tech)}\n, but maybe we can give you more propositions"
+                           f"\n Do you want continue?", size_hint=(0.8, 0.45),
                               pos_hint={'center_x': 0.5, 'center_y': .8})
         floater.add_widget(label)
 

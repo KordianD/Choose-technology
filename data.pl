@@ -18,7 +18,7 @@ list_of_answers(lang, [c, cpp, objective_c, swift, javascript, typescript, pytho
 list_of_answers(platform, [any, windows, ios, mac]).
 list_of_answers(skill, [basic, intermediate]).
 list_of_answers(lang_status, [new, established, any]).
-list_of_answers(lang_traits, [procedural, object_oriented, functional, async, compiler, regex]).
+list_of_answers(lang_execution, [compiled, interpreted, any]).
 list_of_answers(lang_performance, [performance, expressiveness, any]).
 
 similar_to(c, objective_c).
@@ -104,10 +104,12 @@ tech(dl4j) :-
     field(machine_learning),
     lang(java).
 tech(unity) :-
+    skill(basic),
     field(gamedev),
     lang(csharp),
     platform(any).
 tech(unreal) :-
+    skill(intermediate),
     field(gamedev),
     lang(cpp).
 tech(swift_ui) :-
@@ -123,6 +125,10 @@ tech(godot) :-
 tech(cocoa) :-
     platform(mac),
     lang(objective_c).
+tech(emscripten) :-
+    field(web_frontend),
+    skill(intermediate),
+    lang(c).
 
 % 2nd level attributes:
 field(X) :-
@@ -150,24 +156,60 @@ field(desktop) :-
 field(desktop) :-
     likes(complex_systems).
 
-lang(X) :-
+list_of_answers(lang_traits, [procedural, object_oriented, functional, async, compiler]).
+
+lang_status(established) :-
     lang_status(any).
+lang_status(new) :-
+    lang_status(any).
+lang_performance(performance) :-
+    lang_performance(any).
+lang_performance(expresiveness) :-
+    lang_performance(any).
+lang_execution(compiled) :-
+    lang_execution(any).
+lang_execution(interpreted) :-
+    lang_execution(any).
 lang(c) :-
     lang_status(established).
+    lang_performance(performance).
+    lang_execution(compiled).
 lang(cpp) :-
     lang_status(established).
+    lang_performance(performance).
+    lang_execution(compiled).
+lang(swift) :-
+    lang_status(new).
+    lang_performance(performance).
+    lang_execution(compiled).
+lang(objective_c) :-
+    lang_status(established).
+    lang_performance(performance).
+    lang_execution(compiled).
 lang(python) :-
     lang_status(established).
+    lang_performance(expressiveness).
+    lang_execution(interpreted).
 lang(rust) :-
     lang_status(new).
+    lang_performance(performance).
+    lang_execution(compiled).
 lang(typescript) :-
     lang_status(new).
+    lang_performance(expressiveness).
+    lang_execution(interpreted).
 lang(javascript) :-
     lang_status(established).
+    lang_performance(expressiveness).
+    lang_execution(interpreted).
 lang(java) :-
     lang_status(established).
+    lang_performance(expressiveness).
+    lang_execution(compiled).
 lang(csharp) :-
     lang_status(established).
+    lang_performance(expressiveness).
+    lang_execution(compiled).
 
 likes(X) :-
     check(likes, X).

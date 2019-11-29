@@ -92,7 +92,7 @@ tech(tensorflow) :-
     lang(python).
 tech(tensorflow) :-
     field(machine_learning),
-    lang(cpp).
+    lang(cpp),
 tech(caffee) :-
     field(machine_learning),
     lang(cpp).
@@ -106,23 +106,23 @@ tech(dl4j) :-
 tech(unity) :-
     skill(basic),
     field(gamedev),
-    lang(csharp),
+    lang(csharp).
 tech(unreal) :-
     skill(intermediate),
     field(gamedev),
     lang(cpp).
 tech(swift_ui) :-
-    field(web_frontend)
+    field(web_frontend),
     platform(ios),
     lang(swift).
 tech(swift_ui) :-
-    field(web_frontend)
+    field(web_frontend),
     platform(mac),
     lang(swift).
 tech(godot) :-
+    skill(intermediate),
     field(gamedev),
-    lang(cpp),
-    skill(intermediate).
+    lang(cpp).
 tech(cocoa) :-
     field(desktop),
     platform(mac),
@@ -194,6 +194,7 @@ lang(rust) :-
     lang_status(new).
     lang_performance(performance).
     lang_execution(compiled).
+    skill(intermediate).
 lang(typescript) :-
     lang_status(new).
     lang_performance(expressiveness).

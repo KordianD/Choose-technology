@@ -32,12 +32,13 @@ class QuestionsScreen(Screen):
         super(QuestionsScreen, self).__init__(**kwargs)
         self.floater = FloatLayout()
 
-        question_text = prolog.get_question_from_prolog()
+        question_id = prolog.get_question_from_prolog()
+        question_text = prolog.get_question_text(question_id)
         self.question = Label(text=question_text, size_hint=(0.8, 0.15),
                          pos_hint={'center_x': 0.5, 'center_y': .8})
         self.floater.add_widget(self.question)
 
-        answers = prolog.get_answers_from_prolog(question_text)
+        answers = prolog.get_answers_from_prolog(question_id)
         self.apply_answers_to_buttons(question_text, answers)
 
         self.add_widget(self.floater)

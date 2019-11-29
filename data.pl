@@ -10,13 +10,16 @@
 % 2. Path f: compiler, using regular expressions, my hardware
 
 % list of questions to possibly ask user:
-list_of_questions([likes, lang, platform, skill]).
+list_of_questions([likes, lang_status, platform, skill]).
 
 % lists of possible answers:
-list_of_answers(likes, [ux, complex_systems, web_frontend, design, innovation, science, games]).
-list_of_answers(lang, [c, cpp, objective_c, swift]).
+list_of_answers(likes, [user_experience, complex_systems, web_apps, design, innovation, science, games]).
+list_of_answers(lang, [c, cpp, objective_c, swift, javascript, typescript, python, java, csharp, rust]).
 list_of_answers(platform, [any, windows, ios, mac]).
 list_of_answers(skill, [basic, intermediate]).
+list_of_answers(lang_status, [new, established, any]).
+list_of_answers(lang_traits, [procedural, object_oriented, functional, async, compiler, regex]).
+list_of_answers(lang_performance, [performance, expressiveness, any]).
 
 similar_to(c, objective_c).
 similar_to(c, cpp).
@@ -58,6 +61,9 @@ tech(flask) :-
 tech(node) :-
     field(web_backend),
     lang(javascript).
+tech(rocket) :-
+    lang(rust),
+    field(web_backend).
 tech(javafx) :-
     field(web_backend),
     lang(java).
@@ -119,6 +125,8 @@ tech(cocoa) :-
     lang(objective_c).
 
 % 2nd level attributes:
+field(X) :-
+    likes(any).
 field(gamedev) :-
     likes(games).
 field(gamedev) :-
@@ -130,11 +138,36 @@ field(machine_learning) :-
 field(web_frontend) :-
     likes(design).
 field(web_frontend) :-
-    likes(ux).
+    likes(user_experience).
 field(web_backend) :-
     likes(complex_systems).
+field(web_frontend) :-
+    likes(web_apps).
+field(web_backend) :-
+    likes(web_apps).
 field(desktop) :-
-    likes(ux).
+    likes(user_experience).
+field(desktop) :-
+    likes(complex_systems).
+
+lang(X) :-
+    lang_status(any).
+lang(c) :-
+    lang_status(established).
+lang(cpp) :-
+    lang_status(established).
+lang(python) :-
+    lang_status(established).
+lang(rust) :-
+    lang_status(new).
+lang(typescript) :-
+    lang_status(new).
+lang(javascript) :-
+    lang_status(established).
+lang(java) :-
+    lang_status(established).
+lang(csharp) :-
+    lang_status(established).
 
 likes(X) :-
     check(likes, X).
@@ -144,3 +177,5 @@ platform(X) :-
     check(platform, X).
 skill(X) :-
     check(skill, X).
+lang_status(X) :-
+    check(lang_status, X).

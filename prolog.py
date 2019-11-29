@@ -5,6 +5,15 @@ class PrologHelper:
     def __init__(self):
         self.prolog = Prolog()
         self.prolog.consult("main.pl")
+        self.question_dict = {
+            "likes": "What describes your interests the most?",
+            "lang_status": "Do you prefer an older, established language, or a new, innovative one?",
+            "platform": "What platform do you plan on using?",
+            "skill": "How would you describe your programming skills?"
+        }
+        self.tech_dict = {
+            ""
+        }
 
     def get_question_from_prolog(self):
         for q in self.prolog.query("question(Q)"):
@@ -26,3 +35,6 @@ class PrologHelper:
         for t in self.prolog.query("tech(X)"):
             techs.append(str(t["X"]))
         return techs
+
+    def get_question_text(self, question_id):
+        return self.question_dict[question_id]

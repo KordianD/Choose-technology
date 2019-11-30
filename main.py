@@ -18,11 +18,11 @@ class MenuScreen(Screen):
         floater = FloatLayout()
         mainButton = Button(text="Press to resolve your career as programmer", size_hint=(0.5, 0.2),
                             pos_hint={'center_x': 0.5, 'center_y': .8})
-        mainButton.bind(on_press=lambda x: self.goToQuestions())
+        mainButton.bind(on_press=lambda x: self.go_to_questions())
         floater.add_widget(mainButton)
         self.add_widget(floater)
 
-    def goToQuestions(self):
+    def go_to_questions(self):
         sm.current = "questions"
 
 
@@ -34,7 +34,7 @@ class QuestionsScreen(Screen):
 
         question = prolog.get_question_from_prolog()
         self.question = Label(text=question, size_hint=(0.8, 0.15),
-                         pos_hint={'center_x': 0.5, 'center_y': .8})
+                              pos_hint={'center_x': 0.5, 'center_y': .8})
         self.floater.add_widget(self.question)
 
         answers = prolog.get_answers_from_prolog(question)
@@ -88,16 +88,17 @@ class ContinueScreen(Screen):
         super(ContinueScreen, self).__init__(**kwargs)
         floater = FloatLayout()
         tech = prolog.get_possible_techs()
-        label = Label(text=f"You should start to learn\n {' '.join(tech)}\n, but maybe we can give you more propositions"
-                           f"\n Do you want continue?", size_hint=(0.8, 0.45),
-                              pos_hint={'center_x': 0.5, 'center_y': .8})
+        label = Label(
+            text=f"You should start to learn\n {' '.join(tech)}\n, but maybe we can give you more propositions"
+            f"\n Do you want continue?", size_hint=(0.8, 0.45),
+            pos_hint={'center_x': 0.5, 'center_y': .8})
         floater.add_widget(label)
 
         yes_button = Button(text="Yes!", size_hint=(0.2, 0.2),
                             pos_hint={'center_x': 0.2, 'center_y': .3})
         yes_button.bind(on_press=lambda x: self.goToQuestions())
         no_button = Button(text="No!", size_hint=(0.2, 0.2),
-                            pos_hint={'center_x': 0.8, 'center_y': .3})
+                           pos_hint={'center_x': 0.8, 'center_y': .3})
         no_button.bind(on_press=lambda x: self.close())
 
         floater.add_widget(yes_button)

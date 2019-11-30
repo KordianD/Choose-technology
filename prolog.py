@@ -10,7 +10,7 @@ class PrologHelper:
             "lang_status": "Do you prefer an older, established language, or a new, innovative one?",
             "platform": "What platform do you plan on using?",
             "skill": "Do you want a challenge or an easier approach?",
-            "lang_performance": "What do you value more, performance or expresiveness?",
+            "lang_performance": "What do you value more, performance or expressiveness?",
             "lang_execution": "Do you prefer working with compiled or interpreted languages?"
         }
         self.question_dict_reverse = {key: value for (value, key) in self.question_dict.items()}

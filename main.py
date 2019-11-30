@@ -90,7 +90,7 @@ class ContinueScreen(Screen):
         tech = prolog.get_possible_techs()
         label = Label(
             text=f"You should start to learn\n {' '.join(tech)}\n, but maybe we can give you more propositions"
-            f"\n Do you want continue?", size_hint=(0.8, 0.45),
+            f"\n Do you want to continue?", size_hint=(0.8, 0.45),
             pos_hint={'center_x': 0.5, 'center_y': .8})
         floater.add_widget(label)
 

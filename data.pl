@@ -10,13 +10,13 @@
 % 2. Path f: compiler, using regular expressions, my hardware
 
 % list of questions to possibly ask user:
-list_of_questions([likes, platform, lang_status, skill, lang_performance, lang_execution]).
+list_of_questions([likes, lang_status, lang_performance, platform, skill, lang_execution]).
 
 % lists of possible answers:
 list_of_answers(likes, [user_experience, complex_systems, web_apps, design, innovation, science, games]).
 list_of_answers(lang, [c, cpp, objective_c, swift, javascript, typescript, python, java, csharp, rust]).
 list_of_answers(platform, [any, windows, ios, mac]).
-list_of_answers(skill, [basic, intermediate]).
+list_of_answers(skill, [basic, intermediate, any]).
 list_of_answers(lang_status, [new, established, any]).
 list_of_answers(lang_execution, [compiled, interpreted, any]).
 list_of_answers(lang_performance, [performance, expressiveness, any]).
@@ -92,7 +92,7 @@ tech(tensorflow) :-
     lang(python).
 tech(tensorflow) :-
     field(machine_learning),
-    lang(cpp),
+    lang(cpp).
 tech(caffee) :-
     field(machine_learning),
     lang(cpp).
@@ -214,11 +214,13 @@ lang(csharp) :-
 
 likes(X) :-
     check(likes, X).
-lang(X) :-
-    check(lang, X).
 platform(X) :-
     check(platform, X).
 skill(X) :-
     check(skill, X).
 lang_status(X) :-
     check(lang_status, X).
+lang_performance(X) :-
+    check(lang_performance, X).
+lang_execution(X) :-
+    check(lang_execution, X).

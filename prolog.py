@@ -57,13 +57,14 @@ class PrologHelper:
         return answers
 
     def save_answer_to_prolog(self, question, answer):
+        print(question, answer)
         question = self.question_dict_reverse[question]
         cmd = "remember(yes, {0}, {1})".format(question, answer)
         self.prolog.assertz(cmd)
 
     def get_possible_techs(self):
         techs = []
-        for t in self.prolog.query(""X)"):
+        for t in self.prolog.query("tech(X)"):
             techs.append(str(t["X"]))
         return techs
 

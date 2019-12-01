@@ -65,7 +65,7 @@ class QuestionsScreen(Screen):
         prolog.save_answer_to_prolog(question, answer)
         tech = prolog.get_possible_techs()
         if len(tech) != 0:
-            print(tech)
+            sm.add_widget(ContinueScreen(name="continue"))
             sm.current = "continue"
         question = prolog.get_question_from_prolog()
         answers = prolog.get_answers_from_prolog(question)
@@ -89,7 +89,7 @@ class ContinueScreen(Screen):
         floater = FloatLayout()
         tech = prolog.get_possible_techs()
         label = Label(
-            text=f"You should start to learn\n {' '.join(tech)}\n, but maybe we can give you more propositions"
+            text=f"You should start to learn\n {', '.join(tech)}\n, but maybe we can give you more propositions"
             f"\n Do you want to continue?", size_hint=(0.8, 0.45),
             pos_hint={'center_x': 0.5, 'center_y': .8})
         floater.add_widget(label)
@@ -108,6 +108,10 @@ class ContinueScreen(Screen):
 
     def goToQuestions(self):
         sm.current = "questions"
+        for screen in sm.children:
+            if screen.name == 'continue':
+                sm.remove_widget(screen)
+            break
 
     def close(self):
         App.get_running_app().stop()
@@ -118,7 +122,6 @@ class ChooseTechnologyApp(App):
     def build(self):
         sm.add_widget(MenuScreen(name="menu"))
         sm.add_widget(QuestionsScreen(name="questions"))
-        sm.add_widget(ContinueScreen(name="continue"))
         return sm
 
 

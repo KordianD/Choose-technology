@@ -88,9 +88,11 @@ tech(pytorch) :-
     field(machine_learning),
     lang(python).
 tech(tensorflow) :-
+    skill(intermediate),
     field(machine_learning),
     lang(python).
 tech(tensorflow) :-
+    skill(intermediate),
     field(machine_learning),
     lang(cpp).
 tech(caffee) :-

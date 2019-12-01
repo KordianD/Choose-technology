@@ -6,6 +6,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen, SwapTransition
 from prolog import PrologHelper
 from utils import split, get_offsets
 from ui import WrappedButton
+from functools import partial
 
 sm = ScreenManager(transition=SwapTransition())
 prolog = PrologHelper()
@@ -58,11 +59,12 @@ class QuestionsScreen(Screen):
                     'center_x': (space_between_buttons + button_size / 2) + idx * (space_between_buttons + button_size),
                     'center_y': y_offset},
                 halign='center')
-            button.bind(on_press=lambda q: self.answer_the_question(button.text, question))
+            button_callback = partial(self.answer_the_question, question)
+            button.bind(on_press=button_callback)
             self.floater.add_widget(button)
 
-    def answer_the_question(self, answer, question):
-        prolog.save_answer_to_prolog(question, answer)
+    def answer_the_question(self, question, instance):
+        prolog.save_answer_to_prolog(question, instance.text)
         tech = prolog.get_possible_techs()
         if len(tech) != 0:
             sm.add_widget(ContinueScreen(name="continue"))

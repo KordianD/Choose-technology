@@ -95,23 +95,30 @@ class ContinueScreen(Screen):
     def __init__(self, **kwargs):
         super(ContinueScreen, self).__init__(**kwargs)
         floater = FloatLayout()
-        tech = prolog.get_possible_techs()
-        prolog.reset_prolog_memory()
+        tech = [t for t in prolog.get_possible_techs() if t not in prolog.techs_proposed]
+        tech = list(set(tech))
         if len(tech) == 0:
+            prolog.reset_prolog_memory()
             label = Label(
                 text=f"Didn't find a technology this time."
                 f"\n Do you want to restart?", size_hint=(0.8, 0.45),
                 pos_hint={'center_x': 0.5, 'center_y': .8})
         else:
+            prolog.techs_proposed.extend(tech)
             label = Label(
-                text=f"You should start to learn\n {', '.join(tech)}\n,"
-                f"\n Do you want to restart?", size_hint=(0.8, 0.45),
+                text=f"Consider learning these. "
+                f"\nDo you want to continue?", size_hint=(0.8, 0.45),
                 pos_hint={'center_x': 0.5, 'center_y': .8})
+            tech_label = Label(
+                text="".join(prolog.get_tech_description(t) + "\n" for t in tech),
+                pos_hint={'center_x': 0.5, 'center_y': .55}, font_size='20sp')
+            floater.add_widget(tech_label)
         floater.add_widget(label)
+
 
         yes_button = Button(text="Yes!", size_hint=(0.2, 0.2),
                             pos_hint={'center_x': 0.2, 'center_y': .3})
-        yes_button.bind(on_press=lambda x: self.goToQuestions())
+        yes_button.bind(on_press=lambda x: len(tech) == self.goToQuestions())
         no_button = Button(text="No!", size_hint=(0.2, 0.2),
                            pos_hint={'center_x': 0.8, 'center_y': .3})
         no_button.bind(on_press=lambda x: self.close())

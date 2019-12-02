@@ -43,6 +43,7 @@ class PrologHelper:
             "cocoa": "Cocoa - Apple's macOS API",
             "emscripten": "Emscripten - C to WebAssembly toolchain",
         }
+        self.techs_proposed = []
 
     def get_question_from_prolog(self):
         for q in self.prolog.query("question(Q)"):

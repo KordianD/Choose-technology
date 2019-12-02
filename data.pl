@@ -1,14 +1,4 @@
 
-% Questions:
-% 1. What is your main motivation and why do you want to code?
-% 1. options a) Design mobile apps b) Build websites c) Design video games d) Get a job e) Learn a new skill f) Have a shouting matches with g) Analysis large datasets h) Processing natural language i) Processing images and finding shape patterns
-% 2. Path a: Apple or Android
-% 2. Path b: Sexiness or stability
-% 2. Path c: Which engine do you prefer use?
-% 2. Path d: Startup or established
-% 2. Path e: How invested are you?
-% 2. Path f: compiler, using regular expressions, my hardware
-
 % list of questions to possibly ask user:
 list_of_questions([likes, lang_status, lang_performance, paradigm, skill, lang_execution, platform]).
 
@@ -144,8 +134,6 @@ tech(neuroph) :-
     field(machine_learning).
 
 % 2nd level attributes:
-field(X) :-
-    likes(any).
 field(gamedev) :-
     likes(games).
 field(gamedev) :-

@@ -101,7 +101,7 @@ class ContinueScreen(Screen):
             prolog.reset_prolog_memory()
             label = Label(
                 text=f"Didn't find a technology this time."
-                f"\n Do you want to restart?", size_hint=(0.8, 0.45),
+                f"\nDo you want to restart?", size_hint=(0.8, 0.45),
                 pos_hint={'center_x': 0.5, 'center_y': .8})
         else:
             prolog.techs_proposed.extend(tech)

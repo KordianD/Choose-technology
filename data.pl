@@ -10,7 +10,7 @@
 % 2. Path f: compiler, using regular expressions, my hardware
 
 % list of questions to possibly ask user:
-list_of_questions([likes, lang_status, lang_performance, skill, lang_execution, platform]).
+list_of_questions([likes, lang_status, paradigm, lang_performance, skill, lang_execution, platform]).
 
 % lists of possible answers:
 list_of_answers(likes, [user_experience, complex_systems, web_apps, design, innovation, science, games]).
@@ -20,6 +20,7 @@ list_of_answers(skill, [basic, intermediate, any]).
 list_of_answers(lang_status, [new, established, any]).
 list_of_answers(lang_execution, [compiled, interpreted, any]).
 list_of_answers(lang_performance, [performance, expressiveness, any]).
+list_of_answers(paradigm, [procedural, object_oriented, any]).
 
 % similar_to(c, objective_c).
 % similar_to(c, cpp).
@@ -159,6 +160,27 @@ field(web_backend) :-
 field(desktop) :-
     likes(user_experience).
 
+paradigm(X) :-
+    likes(any).
+paradigm(any) :-
+    likes(cpp).
+paradigm(procedural) :-
+    lang(c).
+paradigm(object_oriented) :-
+    lang(javascript).
+paradigm(object_oriented) :-
+    lang(typescript).
+paradigm(object_oriented) :-
+    lang(python).
+paradigm(object_oriented) :-
+    lang(java).
+paradigm(object_oriented) :-
+    lang(csharp).
+paradigm(object_oriented) :-
+    lang(rust).
+paradigm(object_oriented) :-
+    lang(swift).
+
 list_of_answers(lang_traits, [procedural, object_oriented, functional, async, compiler]).
 
 % lang_status(established) :-
@@ -226,3 +248,5 @@ lang_performance(X) :-
     check(lang_performance, X).
 lang_execution(X) :-
     check(lang_execution, X).
+paradigm(X) :-
+    check(paradigm, X).

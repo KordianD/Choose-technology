@@ -43,6 +43,7 @@ class PrologHelper:
             "godot": "Godot - C++ game development framework",
             "cocoa": "Cocoa - Apple's macOS API",
             "emscripten": "Emscripten - C to WebAssembly toolchain",
+            "neuroph": "Neuroph - open source Java framework for neural network creation"
         }
         self.techs_proposed = []
 

@@ -10,7 +10,7 @@
 % 2. Path f: compiler, using regular expressions, my hardware
 
 % list of questions to possibly ask user:
-list_of_questions([likes, lang_status, paradigm, lang_performance, skill, lang_execution, platform]).
+list_of_questions([likes, lang_status, lang_performance, skill, lang_execution, platform]).
 
 % lists of possible answers:
 list_of_answers(likes, [user_experience, complex_systems, web_apps, design, innovation, science, games]).
@@ -79,6 +79,9 @@ tech(wpf) :-
 tech(asp) :-
     field(web_backend),
     lang(csharp).
+tech(spring) :-
+    field(web_backend),
+    lang(java).
 tech(razor) :-
     field(web_frontend),
     lang(csharp).
@@ -135,6 +138,9 @@ tech(emscripten) :-
     field(web_frontend),
     skill(intermediate),
     lang(c).
+tech(neuroph) :-
+    lang(java),
+    field(machine_learning).
 
 % 2nd level attributes:
 field(X) :-

@@ -70,3 +70,6 @@ class PrologHelper:
 
     def get_tech_description(self, tech):
         return self.tech_dict[tech]
+
+    def reset_prolog_memory(self):
+        self.prolog.retractall("remember(_,_,_)")

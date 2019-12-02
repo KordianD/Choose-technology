@@ -90,10 +90,17 @@ class ContinueScreen(Screen):
         super(ContinueScreen, self).__init__(**kwargs)
         floater = FloatLayout()
         tech = prolog.get_possible_techs()
-        label = Label(
-            text=f"You should start to learn\n {', '.join(tech)}\n, but maybe we can give you more propositions"
-            f"\n Do you want to continue?", size_hint=(0.8, 0.45),
-            pos_hint={'center_x': 0.5, 'center_y': .8})
+        prolog.reset_prolog_memory()
+        if len(tech) == 0:
+            label = Label(
+                text=f"Didn't find a technology this time."
+                f"\n Do you want to restart?", size_hint=(0.8, 0.45),
+                pos_hint={'center_x': 0.5, 'center_y': .8})
+        else:
+            label = Label(
+                text=f"You should start to learn\n {', '.join(tech)}\n, but maybe we can give you more propositions"
+                f"\n Do you want to restart?", size_hint=(0.8, 0.45),
+                pos_hint={'center_x': 0.5, 'center_y': .8})
         floater.add_widget(label)
 
         yes_button = Button(text="Yes!", size_hint=(0.2, 0.2),
@@ -109,11 +116,11 @@ class ContinueScreen(Screen):
         self.add_widget(floater)
 
     def goToQuestions(self):
-        sm.current = "questions"
         for screen in sm.children:
             if screen.name == 'continue':
                 sm.remove_widget(screen)
             break
+        sm.current = "questions"
 
     def close(self):
         App.get_running_app().stop()

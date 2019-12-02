@@ -34,6 +34,9 @@ answers(Q, A) :-
      remember(yes, Q, A), % if "yes", true. otherwise, false.
      !.
  check(Q, A) :-
+     remember(yes, Q, any),
+     !.
+ check(Q, A) :-
      remember(_, Q, A),
      !,
      fail.

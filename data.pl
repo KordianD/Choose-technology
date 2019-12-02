@@ -10,7 +10,7 @@
 % 2. Path f: compiler, using regular expressions, my hardware
 
 % list of questions to possibly ask user:
-list_of_questions([likes, lang_status, lang_performance, platform, skill, lang_execution]).
+list_of_questions([likes, lang_status, lang_performance, skill, lang_execution, platform]).
 
 % lists of possible answers:
 list_of_answers(likes, [user_experience, complex_systems, web_apps, design, innovation, science, games]).
@@ -104,7 +104,8 @@ tech(keras) :-
     skill(basic).
 tech(dl4j) :-
     field(machine_learning),
-    lang(java).
+    lang(java),
+    skill(intermediate).
 tech(unity) :-
     skill(basic),
     field(gamedev),
@@ -160,58 +161,57 @@ field(desktop) :-
 
 list_of_answers(lang_traits, [procedural, object_oriented, functional, async, compiler]).
 
-lang_status(established) :-
-    lang_status(any).
-lang_status(new) :-
-    lang_status(any).
-lang_performance(performance) :-
-    lang_performance(any).
-lang_performance(expresiveness) :-
-    lang_performance(any).
-lang_execution(compiled) :-
-    lang_execution(any).
-lang_execution(interpreted) :-
-    lang_execution(any).
+% lang_status(established) :-
+%     check(lang_status,any).
+% lang_status(new) :-
+%     lang_status(any).
+% lang_performance(performance) :-
+%     lang_performance(any).
+% lang_performance(expresiveness) :-
+%     lang_performance(any).
+% lang_execution(compiled) :-
+%     lang_execution(any).
+% lang_execution(interpreted) :-
+%     lang_execution(any).
 lang(c) :-
-    lang_status(established).
-    lang_performance(performance).
+    lang_status(established),
+    lang_performance(performance),
     lang_execution(compiled).
 lang(cpp) :-
-    lang_status(established).
-    lang_performance(performance).
+    lang_status(established),
+    lang_performance(performance),
     lang_execution(compiled).
 lang(swift) :-
-    lang_status(new).
-    lang_performance(performance).
+    lang_status(new),
+    lang_performance(performance),
     lang_execution(compiled).
 lang(objective_c) :-
-    lang_status(established).
-    lang_performance(performance).
+    lang_status(established),
+    lang_performance(performance),
     lang_execution(compiled).
 lang(python) :-
-    lang_status(established).
-    lang_performance(expressiveness).
+    lang_status(established),
+    lang_performance(expressiveness),
     lang_execution(interpreted).
 lang(rust) :-
-    lang_status(new).
-    lang_performance(performance).
+    lang_status(new),
+    lang_performance(performance),
     lang_execution(compiled).
-    skill(intermediate).
 lang(typescript) :-
-    lang_status(new).
-    lang_performance(expressiveness).
+    lang_status(new),
+    lang_performance(expressiveness),
     lang_execution(interpreted).
 lang(javascript) :-
-    lang_status(established).
-    lang_performance(expressiveness).
+    lang_status(established),
+    lang_performance(expressiveness),
     lang_execution(interpreted).
 lang(java) :-
-    lang_status(established).
-    lang_performance(expressiveness).
+    lang_status(established),
+    lang_performance(expressiveness),
     lang_execution(compiled).
 lang(csharp) :-
-    lang_status(established).
-    lang_performance(expressiveness).
+    lang_status(established),
+    lang_performance(expressiveness),
     lang_execution(compiled).
 
 likes(X) :-

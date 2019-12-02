@@ -69,11 +69,17 @@ class QuestionsScreen(Screen):
         if len(tech) != 0:
             sm.add_widget(ContinueScreen(name="continue"))
             sm.current = "continue"
+
         question = prolog.get_question_from_prolog()
-        answers = prolog.get_answers_from_prolog(question)
-        self.question.text = question
-        self.reset_old_answers()
-        self.apply_answers_to_buttons(self.question.text, answers)
+        if question:
+            answers = prolog.get_answers_from_prolog(question)
+            self.question.text = question
+            self.reset_old_answers()
+            self.apply_answers_to_buttons(self.question.text, answers)
+        else:
+            sm.add_widget(ContinueScreen(name="continue"))
+            sm.current = "continue"
+
 
     def reset_old_answers(self):
         buttons_count = -1
@@ -98,7 +104,7 @@ class ContinueScreen(Screen):
                 pos_hint={'center_x': 0.5, 'center_y': .8})
         else:
             label = Label(
-                text=f"You should start to learn\n {', '.join(tech)}\n, but maybe we can give you more propositions"
+                text=f"You should start to learn\n {', '.join(tech)}\n,"
                 f"\n Do you want to restart?", size_hint=(0.8, 0.45),
                 pos_hint={'center_x': 0.5, 'center_y': .8})
         floater.add_widget(label)

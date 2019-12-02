@@ -3,31 +3,45 @@
 
 consult(data).
 
+% utils
+isEmpty([]).
+oneElem([H]).
+choose([],_) :- !, fail.
+choose(L, E) :-
+    length(L, Length),
+    random(0, Length, I),
+    nth0(I, L, E).
+
 % interface to ask questions
 question(Q) :-
     list_of_questions(L),
     member(Q, L),
     \+remember(yes, Q, _),
     !.
-% question(Q) :-
-%     list_of_questions(L),
-%     member(Q, L),
-%     !.
+question(Q) :-
+    list_of_questions([H|L]),
+    member(Q, L),
+    \+remember(yes, Q, any),
+    answered(Q),
+    !.
+question(Q) :-
+    list_of_questions([H|L]),
+    member(Q, L),
+    \+remember(yes, Q, any),
+    answers(Q, A),
+    \+remember(yes, Q, A),
+    !.
 
 % interface to list answers to a question
 answers(Q, A) :-
     list_of_answers(Q, L),
-    member(A, L).
+    member(A, L),
+    \+remember(yes, Q, A).
 
-% logic for detemining user preference and knowledge
- wants_similar(A) :-
-     menuask(wants_similar, A, [yes, no, dnc]).
- wants_similar_to(A) :-
-     knows(A).
- knows(A) :-
-     list_of_langs(L),
-     member(B, L),
-     similar(A, B).
+answered(Q) :-
+    findall(A, remember(yes, Q, A), L),
+    oneElem(L),
+    !.
 
  % logic for using knowledge:
  check(Q, A) :-

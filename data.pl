@@ -10,7 +10,7 @@ list_of_answers(skill, [basic, intermediate, any]).
 list_of_answers(lang_status, [new, established, any]).
 list_of_answers(lang_execution, [compiled, interpreted, any]).
 list_of_answers(lang_performance, [performance, expressiveness, any]).
-list_of_answers(paradigm, [procedural, object_oriented, any]).
+list_of_answers(paradigm, [procedural, object_oriented, multi_paradigm, any]).
 
 % similar_to(c, objective_c).
 % similar_to(c, cpp).
@@ -155,20 +155,7 @@ field(web_backend) :-
 field(desktop) :-
     likes(user_experience).
 
-list_of_answers(lang_traits, [procedural, object_oriented, functional, async, compiler]).
 
-% lang_status(established) :-
-%     check(lang_status,any).
-% lang_status(new) :-
-%     lang_status(any).
-% lang_performance(performance) :-
-%     lang_performance(any).
-% lang_performance(expresiveness) :-
-%     lang_performance(any).
-% lang_execution(compiled) :-
-%     lang_execution(any).
-% lang_execution(interpreted) :-
-%     lang_execution(any).
 lang(c) :-
     lang_status(established),
     lang_performance(performance),
@@ -182,7 +169,7 @@ lang(cpp) :-
 lang(swift) :-
     lang_status(new),
     lang_performance(performance),
-    paradigm(object_oriented),
+    paradigm(multi_paradigm),
     lang_execution(compiled).
 lang(objective_c) :-
     lang_status(established),
@@ -207,7 +194,7 @@ lang(typescript) :-
 lang(javascript) :-
     lang_status(established),
     lang_performance(expressiveness),
-    paradigm(object_oriented),
+    paradigm(multi_paradigm),
     lang_execution(interpreted).
 lang(java) :-
     lang_status(established),

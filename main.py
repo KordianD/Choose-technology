@@ -17,7 +17,7 @@ class MenuScreen(Screen):
     def __init__(self, **kwargs):
         super(MenuScreen, self).__init__(**kwargs)
         floater = FloatLayout()
-        mainButton = Button(text="Press to resolve your career as programmer", size_hint=(0.5, 0.2),
+        mainButton = Button(text="Press to find a technology that might interest you", size_hint=(0.5, 0.2),
                             pos_hint={'center_x': 0.5, 'center_y': .8})
         mainButton.bind(on_press=lambda x: self.go_to_questions())
         floater.add_widget(mainButton)
@@ -69,16 +69,15 @@ class QuestionsScreen(Screen):
         if len(tech) != 0:
             sm.add_widget(ContinueScreen(name="continue"))
             sm.current = "continue"
-
-        question = prolog.get_question_from_prolog()
-        if question:
-            answers = prolog.get_answers_from_prolog(question)
-            self.question.text = question
-            self.reset_old_answers()
-            self.apply_answers_to_buttons(self.question.text, answers)
-        else:
+        if question is None:
+            prolog.reset_prolog_memory()
             sm.add_widget(ContinueScreen(name="continue"))
             sm.current = "continue"
+        question = prolog.get_question_from_prolog()
+        answers = prolog.get_answers_from_prolog(question)
+        self.question.text = question
+        self.reset_old_answers()
+        self.apply_answers_to_buttons(self.question.text, answers)
 
 
     def reset_old_answers(self):

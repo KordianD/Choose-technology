@@ -10,7 +10,7 @@
 % 2. Path f: compiler, using regular expressions, my hardware
 
 % list of questions to possibly ask user:
-list_of_questions([likes, lang_status, lang_performance, skill, lang_execution, platform]).
+list_of_questions([likes, lang_status, lang_performance, paradigm, skill, lang_execution, platform]).
 
 % lists of possible answers:
 list_of_answers(likes, [user_experience, complex_systems, web_apps, design, innovation, science, games]).
@@ -81,6 +81,7 @@ tech(asp) :-
     lang(csharp).
 tech(spring) :-
     field(web_backend),
+    paradigm(object_oriented),
     lang(java).
 tech(razor) :-
     field(web_frontend),
@@ -166,27 +167,6 @@ field(web_backend) :-
 field(desktop) :-
     likes(user_experience).
 
-paradigm(X) :-
-    likes(any).
-paradigm(any) :-
-    likes(cpp).
-paradigm(procedural) :-
-    lang(c).
-paradigm(object_oriented) :-
-    lang(javascript).
-paradigm(object_oriented) :-
-    lang(typescript).
-paradigm(object_oriented) :-
-    lang(python).
-paradigm(object_oriented) :-
-    lang(java).
-paradigm(object_oriented) :-
-    lang(csharp).
-paradigm(object_oriented) :-
-    lang(rust).
-paradigm(object_oriented) :-
-    lang(swift).
-
 list_of_answers(lang_traits, [procedural, object_oriented, functional, async, compiler]).
 
 % lang_status(established) :-
@@ -204,42 +184,52 @@ list_of_answers(lang_traits, [procedural, object_oriented, functional, async, co
 lang(c) :-
     lang_status(established),
     lang_performance(performance),
+    paradigm(procedural),
     lang_execution(compiled).
 lang(cpp) :-
     lang_status(established),
     lang_performance(performance),
+    paradigm(object_oriented),
     lang_execution(compiled).
 lang(swift) :-
     lang_status(new),
     lang_performance(performance),
+    paradigm(object_oriented),
     lang_execution(compiled).
 lang(objective_c) :-
     lang_status(established),
     lang_performance(performance),
+    paradigm(object_oriented),
     lang_execution(compiled).
 lang(python) :-
     lang_status(established),
     lang_performance(expressiveness),
+    paradigm(object_oriented),
     lang_execution(interpreted).
 lang(rust) :-
     lang_status(new),
     lang_performance(performance),
+    paradigm(object_oriented),
     lang_execution(compiled).
 lang(typescript) :-
     lang_status(new),
     lang_performance(expressiveness),
+    paradigm(object_oriented),
     lang_execution(interpreted).
 lang(javascript) :-
     lang_status(established),
     lang_performance(expressiveness),
+    paradigm(object_oriented),
     lang_execution(interpreted).
 lang(java) :-
     lang_status(established),
     lang_performance(expressiveness),
+    paradigm(object_oriented),
     lang_execution(compiled).
 lang(csharp) :-
     lang_status(established),
     lang_performance(expressiveness),
+    paradigm(object_oriented),
     lang_execution(compiled).
 
 likes(X) :-
